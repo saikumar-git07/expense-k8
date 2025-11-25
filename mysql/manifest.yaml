@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nginx
+  labels:
+    component: mysql
+    project: expense
+    tier: db
+spec:
+   replicas: 2
+   selector: 
+     matchLabels:
+       component: mysql
+       project: expense
+       tier: db
+  # pod defination
+   template:
+     metadata:
+       labels:
+         component: mysql
+         project: expense
+         tier: db
+     spec:
+       containers:
+       - name: nginx
+         image: saikumar718/mysql:v1.0.0
